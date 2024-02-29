@@ -36,3 +36,102 @@
     transform: rotate(360deg);
   }
 }
+/* Estilos para el Navbar */
+/* Add this CSS to your existing styles or create a new CSS file */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.logo {
+  margin: 0;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+#search-bar {
+  padding: 8px;
+  margin: 10px;
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+}
+
+#search-icon {
+  color: white;
+  font-size: 1.2em;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/* Add this CSS to your existing styles or create a new CSS file */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+}
+/* TarjetaImagen.css */
+
+.tarjeta-imagen {
+  display: inline-block;
+  max-width: 300px;
+  margin: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.tarjeta-imagen img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.tarjeta-imagen p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.tarjeta-imagen button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.tarjeta-imagen button:hover {
+  background-color: #0056b3;
+}
+/* Carrusel.css */
+.carrusel-image {
+  width: 100px; /* Ajusta el tamaño de ancho según tus necesidades, por ejemplo, 50% del contenedor */
+  height: 50px; /* Ajusta la altura automáticamente para mantener la proporción original */
+}
+
+/* Mensaje.css */
+.mensaje-container {
+  text-align: center; /* Alinea el contenido al centro */
+}
+
+input {
+  margin-bottom: 10px; /* Agrega un margen inferior al input */
+}

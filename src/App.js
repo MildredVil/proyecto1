@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import TarjetaImagen from './components/TarjetaImagen';
+import Carrusel from './components/Carrusel';
+import Mensaje from './components/Mensaje';
+import AboutUs from './components/AboutUs';  // Import your AboutUs component
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+const App = () => {
+  const [showAboutUs, setShowAboutUs] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar onAboutUsClick={() => setShowAboutUs(true)} />
+      
+      {showAboutUs ? (
+        <AboutUs onClose={() => setShowAboutUs(false)} />
+      ) : (
+        <>
+          <Carrusel />
+          <Mensaje />
+          <TarjetaImagen computadora />
+        </>
+      )}
+
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
