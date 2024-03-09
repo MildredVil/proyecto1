@@ -1,10 +1,23 @@
-// TarjetaImagen.jsx
 import React, { useState, useEffect } from 'react';
 
 const TarjetaImagen = ({ mensaje, eliminar, editar }) => {
   const [editando, setEditando] = useState(false);
   const [nuevoMensaje, setNuevoMensaje] = useState(mensaje);
+  const [descripcion, setDescripcion] = useState('');
+  const [direccionIP, setDireccionIP] = useState('');
+  const [direccionMAC, setDireccionMAC] = useState('');
+  const [departamento, setDepartamento] = useState('');
+  const [nodo, setNodo] = useState('');
   const [codigoQR, setCodigoQR] = useState('');
+  const [mostrarPopup, setMostrarPopup] = useState(false);
+  const [informacionSistema, setInformacionSistema] = useState({
+    nombre: '',
+    descripcion: '',
+    direccionIP: '',
+    direccionMAC: '',
+    departamento: '',
+    nodo: ''
+  });
 
   const handleGuardar = () => {
     editar(nuevoMensaje);
@@ -16,7 +29,6 @@ const TarjetaImagen = ({ mensaje, eliminar, editar }) => {
       const datosParaQR = nuevoMensaje || mensaje;
 
       try {
-        // Aqui utilizo la API de Google Chart QR Code para generar el código QR pero me manda a buscar lo que introduci en google
         const response = await fetch(
           `https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${encodeURIComponent(
             datosParaQR
@@ -36,6 +48,18 @@ const TarjetaImagen = ({ mensaje, eliminar, editar }) => {
     generarCodigoQR();
   }, [mensaje, nuevoMensaje]);
 
+  const mostrarPopupInformacion = () => {
+    setMostrarPopup(true);
+    setInformacionSistema({
+      nombre: nuevoMensaje,
+      descripcion: descripcion,
+      direccionIP: direccionIP,
+      direccionMAC: direccionMAC,
+      departamento: departamento,
+      nodo: nodo
+    });
+  };
+
   return (
     <div className="tarjeta-imagen">
       {editando ? (
@@ -53,7 +77,20 @@ const TarjetaImagen = ({ mensaje, eliminar, editar }) => {
           {codigoQR && <img src={codigoQR} alt="Código QR" />}
           <button onClick={() => setEditando(true)}>Editar</button>
           <button onClick={eliminar}>Eliminar</button>
+          <button onClick={mostrarPopupInformacion}>Ver más detalles</button>
         </>
+      )}
+      {mostrarPopup && (
+        <div className="popup">
+          <h2>Información del Sistema</h2>
+          <p>Nombre: {informacionSistema.nombre}</p>
+          <p>Descripción: {informacionSistema.descripcion}</p>
+          <p>Dirección IP: {informacionSistema.direccionIP}</p>
+          <p>Dirección MAC: {informacionSistema.direccionMAC}</p>
+          <p>Departamento: {informacionSistema.departamento}</p>
+          <p>Nodo: {informacionSistema.nodo}</p>
+          <button onClick={() => setMostrarPopup(false)}>Cerrar</button>
+        </div>
       )}
     </div>
   );
